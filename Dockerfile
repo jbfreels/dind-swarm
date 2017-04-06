@@ -1,4 +1,7 @@
 FROM docker:1.13.1-dind
+LABEL maintainer "J.B. Freels <jbfreels@terragotech.com>
+
+ENV NUM_WORKERS 3
 
 RUN apk add --no-cache \
 		git \
