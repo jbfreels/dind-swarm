@@ -11,7 +11,7 @@ I guess this is the flavor of the month since docker-machine seems to be dead :)
 
 You can specify the mount of workers (default=3) by setting NUM_WORKERS...
 
-`docker run --privileged --name swarm -d -p 3000:3000 --rm -e NUM_WORKERS=5 dind-swarm`
+`docker run --privileged --name swarm -d -p 3000:3000 --rm -e `**`NUM_WORKERS=5`**` dind-swarm`
 
 ## Verify
 The swarm will take a minute or so to start up, as long as it hasn't exited, you'll get EOF error or valid output
