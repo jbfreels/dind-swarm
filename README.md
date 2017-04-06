@@ -1,9 +1,5 @@
 # Docker in Docker Swarm
-see original: https://github.com/ThatsMrTalbot/docker-dind-swarm
-
-hub: https://hub.docker.com/r/thatsmrtalbot/dind-swarm/
-
-Forked this project to adapt it to docker 1.13.1.  I use this to test my custom swarm CLI and API to ochestrate containers.
+Docker 1.13.1.  I use this to test my custom swarm CLI and API to ochestrate containers.
 
 I guess this is the flavor of the month since docker-machine seems to be dead :)
 
