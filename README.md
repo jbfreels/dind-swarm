@@ -21,3 +21,12 @@ The swarm will take a minute or so to start up, as long as it hasn't exited, you
 `docker -H tcp://127.0.0.1:3000 node ls`
 
 `docker -H tcp://127.0.0.1:3000 node promote swarm-slave1`
+
+## Insecure Registry
+If you have an insecure registry on your host or network, checkout the registry branch.
+
+`git checkout registry`
+
+Now you can pass REGISTRY as an environment variable and it will be passed to the workers.
+
+`docker run --privileged {...} `**`REGISTRY=MY_LOCAL_REGISTRY:5000`**` dind-swarm`
