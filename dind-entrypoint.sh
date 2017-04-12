@@ -1,28 +1,38 @@
 #!/bin/sh
+#
+# dind-entrypoint.sh
+# 
+# utilized within a dind container 
 
+# exit on error
 set -e
 
+# start docker daemon
 dockerd \
 		--host=unix:///var/run/docker.sock \
-		--storage-driver=vfs &
-
+		--storage-driver=overlay2 \
+		--insecure-registry=${REGISTRY} &
 sleep 5
 
+# spawn docker swarm master
 docker run -v /raft:/var/lib/docker/swarm/raft \
+	-v /media/stage:/media/edgesw/stage \
 	-h master \
 	-p 2375:2375 \
+	-e REGISTRY=${REGISTRY} \
 	--privileged \
 	--name=master \
-	-d $@ docker:1.13.1-dind \
+	-d ${REGISTRY}/dind:1.13.1 --insecure-registry ${REGISTRY} \
 	> /dev/null 2> /dev/null && \
 	echo "master started" || \
 	echo "master could not start" 
 
+# create workers
 for i in $(seq "${NUM_WORKERS}"); do
 	docker run -d --privileged \
 		--name worker-${i} \
 		-h worker-${i} \
-		docker:1.13.1-dind \
+		${REGISTRY}/dind:1.13.1 --insecure-registry ${REGISTRY} \
 		> /dev/null 2> /dev/null && \
 		echo worker-${i} up \
 		|| echo worker-${i} failed to start
