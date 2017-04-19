@@ -22,6 +22,20 @@ The swarm will take a minute or so to start up, as long as it hasn't exited, you
 
 `docker -H tcp://127.0.0.1:3000 node promote swarm-slave1`
 
+## Environment Variables
+```bash
+DIND_PORT=3000                        # port exposed to host
+DIND_MASTER_NAME=master               # hostname for master node
+DIND_MASTER_IMAGE=docker:1.13.1-dind  # image used to run master node
+DIND_WORKER_IMAGE=docker:1.13.1-dind  # image used to run worker nodes
+DIND_WORKERS=3                        # (previously NUM_WORKERS) number of workers to spawn
+DIND_STORAGE_DRIVER=vfs               # storage driver to use
+```
+### Change Default Port
+```bash
+export DIND_PORT=8765
+docker run --privileged {...} -p $DIND_PORT:$DIND_PORT --env DIND_PORT=$DIND_PORT dind-swarm
+```
 ## Insecure Registry
 If you have an insecure registry on your host or network, checkout the registry branch.
 
