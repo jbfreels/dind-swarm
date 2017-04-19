@@ -35,6 +35,7 @@ DIND_STORAGE_DRIVER=vfs               # storage driver to use
 ```bash
 export DIND_PORT=8765
 docker run --privileged {...} -p $DIND_PORT:$DIND_PORT --env DIND_PORT=$DIND_PORT dind-swarm
+docker -H tcp://127.0.0.1:$DIND_PORT info
 ```
 ## Insecure Registry
 If you have an insecure registry on your host or network, checkout the registry branch.
