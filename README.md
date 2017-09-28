@@ -1,3 +1,8 @@
+# Update
+You shouldn't use this, as you can now have a single node swarm which is more ideal to test with than a docker-in-docker swarm.
+
+`docker swarm init` on your local and you can now test swarm command, create services, etc..
+
 # Docker in Docker Swarm
 Docker 1.13.1.  I use this to test my custom swarm CLI and API to ochestrate containers.
 
